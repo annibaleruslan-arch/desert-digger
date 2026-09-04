@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Desert Digger</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="game-container">
+    <div id="main-menu" class="screen">
+        <div class="menu-box">
+            <h1>DESERT DIGGER</h1>
+            <button class="menu-btn" onclick="startGame()">ИГРАТЬ</button>
+            <button class="menu-btn" onclick="openSettings()">НАСТРОЙКИ</button>
+        </div>
+    </div>
+
+    <div id="top-bar">
+        <div class="hud-panel">БАБЛО: <span id="money-display" style="color:#f1c40f;">0</span> $</div>
+        <div class="hud-panel">ВЕС: <span id="weight-display">0.000</span>/<span id="max-weight-display">2.000</span> КГ</div>
+        <button class="hud-btn" onclick="openInventory()">РЮКЗАК</button>
+    </div>
+
+    <canvas id="gameCanvas" width="800" height="450"></canvas>
+
+    <div id="action-prompt" class="hidden">
+        <div id="prompt-title">НАХОДКА</div>
+        <div id="prompt-desc">ОПИСАНИЕ</div>
+        <button id="prompt-btn" class="action-btn" onclick="handleAction()">ДЕЙСТВИЕ</button>
+    </div>
+
+    <div id="touch-controls">
+        <button class="ctrl-btn" onmousedown="startMove(-1)" onmouseup="stopMove()" ontouchstart="startMove(-1)" ontouchend="stopMove()">◄</button>
+        <button class="ctrl-btn" onmousedown="startMove(1)" onmouseup="stopMove()" ontouchstart="startMove(1)" ontouchend="stopMove()">►</button>
+    </div>
+
+    <div id="inventory-modal" class="modal hidden">
+        <div class="modal-header">
+            <span>РЮКЗАК</span>
+            <button class="modal-close" onclick="closeInventory()">X</button>
+        </div>
+        <div id="inventory-list" class="modal-content"></div>
+        <button class="sell-btn" onclick="sellAllRocks()">ПРОДАТЬ ВСЕ КАМНИ</button>
+    </div>
+
+    <div id="shop-modal" class="modal hidden">
+        <div class="modal-header">
+            <span>ЛАВКА СКУПЩИКА</span>
+            <button class="modal-close" onclick="closeShop()">X</button>
+        </div>
+        <div class="modal-content">
+            <div style="font-size:7px; color:#ffeaa7;">Здесь скупают хабар.</div>
+        </div>
+        <button class="sell-btn" onclick="sellAllRocks()">СДАТЬ ХАБАР</button>
+    </div>
+
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-header">
+            <span>НАСТРОЙКИ</span>
+            <button class="modal-close" onclick="closeSettings()">X</button>
+        </div>
+        <div class="modal-content">
+            <div class="setting-row">
+                <span>МУЗЫКА:</span>
+                <input type="checkbox" checked>
+            </div>
+            <div class="setting-row">
+                <span>ЗВУКИ:</span>
+                <input type="checkbox" checked>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/database.js"></script>
+<script src="js/player.js"></script>
+<script src="js/world.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
